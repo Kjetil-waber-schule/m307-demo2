@@ -7,3 +7,19 @@ footer {
   background-color: lightblue;
   padding: 12px;
 }
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50; /* Example color */
+  color: white;
+  text-align: center;
+  text-decoration: none; /* Remove underline from link */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049; /* Example hover color */
+}

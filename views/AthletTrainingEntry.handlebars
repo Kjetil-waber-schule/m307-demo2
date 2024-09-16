@@ -1,0 +1,38 @@
+<h1>Training Erfassen</h1>
+
+<form>
+  Datum:
+  <br />
+  <input type="date" /><br />
+  Erholungszustand:
+  <br />
+  <input
+    type="range"
+    id="RecoveryRange"
+    name="RecoveryRange"
+    min="1"
+    max="5"
+  /><br />
+  Stimmung:
+  <br />
+  <input type="range" id="MoodRange" name="MoodRange" min="1" max="5" /><br />
+  Intensität:
+  <br />
+  <input
+    type="range"
+    id="IntensityRange"
+    name="IntensityRange"
+    min="1"
+    max="5"
+  /><br />
+  Foto:
+  <br />
+  <input type="file" id="ImageUpload" name="ImageUpload" accept="image/*" />
+  <br />
+  Kommentar:
+  <br />
+  <textarea id="Comment" name="Comment" maxlength="256"></textarea><br />
+
+  <input type="submit" value="Speichern" />
+</form>
+<a href="/AthletHome" class="button">Abbrechen</a>

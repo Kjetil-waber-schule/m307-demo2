@@ -52,14 +52,14 @@ app.get("/Trainingsdetails/:id", async function (req, res) {
 
 app.post("/create_training", async function (req, res) {
   await app.locals.pool.query(
-    "INSERT INTO training (date, RecoveryRange, MoodRange, IntensityRange, ImageUpload, Comment) VALUES ($1, $2, $3, $4, $5, $6)",
+    "INSERT INTO training (athlet_ID, zeitpunkt, erholungszustand, stimmung, intensitaet, foto, text, zugehoerigkeit_id) VALUES (3, $1, $2, $3, $4, $5, $6, (SELECT id from zugehoerigkeit WHERE athlet_id = 3 LIMIT 1))",
     [
-      req.body.zeitpunkt,
-      req.body.erholungszustand,
-      req.body.stimmung,
-      req.body.intensitaet,
-      req.body.foto,
-      req.body.text,
+      req.body.date,
+      req.body.RecoveryRange,
+      req.body.MoodRange,
+      req.body.IntensityRange,
+      req.body.ImageUpload,
+      req.body.Comment,
     ]
   );
   res.redirect("/TrainingOverview");

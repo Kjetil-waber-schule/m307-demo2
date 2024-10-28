@@ -23,3 +23,13 @@ footer {
 .button:hover {
   background-color: #45a049; /* Example hover color */
 }
+
+tr,
+th,
+td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}

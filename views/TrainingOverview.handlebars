@@ -1,8 +1,18 @@
 <h1>Training Übersicht</h1>
 
-{{#uebersicht}}
-  <div class="comment">
-    {{zeitpunkt}}
-    {{text}}
-  </div>
-{{/uebersicht}}
+<table>
+  <tr>
+    <th>Zeitpunkt</th>
+    <th>Erholungszustand</th>
+    <th>Stimmung</th>
+    <th>Intensität</th>
+  </tr>
+  {{#uebersicht}}
+    <tr>
+      <td><a href="/Trainingsdetails/{{id}}">{{zeitpunkt}}</a></td>
+      <td>{{erholungszustand}}</td>
+      <td>{{stimmung}}</td>
+      <td>{{intensitaet}}</td>
+    </tr>
+  {{/uebersicht}}
+</table>

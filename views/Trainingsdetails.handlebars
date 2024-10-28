@@ -1,0 +1,13 @@
+<h1>Trainingsdetails</h1>
+{{#details}}
+  <p>Zeitpunkt: {{zeitpunkt}}</p>
+  <p>Erholungszustand: {{erholungszustand}}</p>
+  <p>Stimmung: {{stimmung}}</p>
+  <p>Intensität: {{intensitaet}}</p>
+  <p>Trainer: {{Trainer_Vorname}} {{Trainer_Name}}</p>
+  <p>Text: {{text}}</p>
+
+  {{#if foto}}
+    <img src="{{foto}}" alt="Trainingsfoto" />
+  {{/if}}
+{{/details}}

@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 const upload = multer({ dest: "public/uploads/" });
 import sessions from "express-session";
+import bcrypt from "bcrypt";
 
 export function createApp(dbconfig) {
   const app = express();
@@ -30,7 +31,45 @@ export function createApp(dbconfig) {
   );
 
   app.locals.pool = pool;
+  app.get("/register", function (req, res) {
+    res.render("register");
+  });
 
+  app.post("/register", function (req, res) {
+    var password = bcrypt.hashSync(req.body.password, 10);
+    pool.query(
+      "INSERT INTO athlets (email, password, vorname, nachname) VALUES ($1, $2, $3, $4)",
+      [req.body.email, password, req.body.vorname, req.body.nachname],
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        }
+        res.redirect("/");
+      }
+    );
+  });
+
+  app.get("/login", function (req, res) {
+    res.render("login");
+  });
+
+  app.post("/login", function (req, res) {
+    pool.query(
+      "SELECT * FROM athlets WHERE email = $1",
+      [req.body.email],
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        }
+        if (bcrypt.compareSync(req.body.password, result.rows[0].password)) {
+          req.session.userid = result.rows[0].id;
+          res.redirect("/athletHome");
+        } else {
+          res.redirect("/");
+        }
+      }
+    );
+  });
   return app;
 }
 

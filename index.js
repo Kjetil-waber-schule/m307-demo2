@@ -22,10 +22,18 @@ app.get("/registration", (req, res) => {
 });
 
 app.get("/AthletHome", (req, res) => {
+  if (!req.session.userid) {
+    res.redirect("/");
+    return;
+  }
   res.render("AthletHome");
 });
 
 app.get("/AthletTrainingEntry", (req, res) => {
+  if (!req.session.userid) {
+    res.redirect("/");
+    return;
+  }
   res.render("AthletTrainingEntry");
 });
 

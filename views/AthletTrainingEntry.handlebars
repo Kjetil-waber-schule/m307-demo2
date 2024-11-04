@@ -1,6 +1,6 @@
 <h1>Training Erfassen</h1>
 
-<form action="/create_training" method="post">
+<form action="/create_training" enctype="multipart/form-data" method="post">
   Datum:
   <br />
   <input type="date" name="date" /><br />
@@ -27,7 +27,7 @@
   /><br />
   Foto:
   <br />
-  <input type="file" id="ImageUpload" name="ImageUpload" accept="image/*" />
+  <input type="file" id="image" name="image" accept="image/*" />
   <br />
   Kommentar:
   <br />
@@ -36,3 +36,4 @@
   <input type="submit" value="Speichern" />
 </form>
 <a href="/AthletHome" class="button">Abbrechen</a>
+<a href="/logout" class="button">Logout</a>

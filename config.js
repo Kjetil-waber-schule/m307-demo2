@@ -49,6 +49,24 @@ export function createApp(dbconfig) {
     );
   });
 
+  app.get("/trainerRegister", function (req, res) {
+    res.render("trainerRegister");
+  });
+
+  app.post("/trainerRegister", function (req, res) {
+    var password = bcrypt.hashSync(req.body.password, 10);
+    pool.query(
+      "INSERT INTO trainers (email, password, vorname, nachname) VALUES ($1, $2, $3, $4)",
+      [req.body.email, password, req.body.vorname, req.body.nachname],
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        }
+        res.redirect("/trainerLogin");
+      }
+    );
+  });
+
   app.get("/login", function (req, res) {
     res.render("login");
   });
@@ -69,6 +87,38 @@ export function createApp(dbconfig) {
         }
       }
     );
+  });
+
+  app.get("/trainerLogin", function (req, res) {
+    res.render("trainerLogin");
+  });
+
+  app.post("/trainerLogin", function (req, res) {
+    pool.query(
+      "SELECT * FROM trainers WHERE email = $1",
+      [req.body.email],
+      (error, result) => {
+        if (error) {
+          console.log(error);
+        }
+        if (bcrypt.compareSync(req.body.password, result.rows[0].password)) {
+          req.session.userid = result.rows[0].id;
+          res.redirect("/trainerHome");
+        } else {
+          res.redirect("/trainerLogin");
+        }
+      }
+    );
+  });
+  app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Fehler beim Löschen der Session:", err);
+        res.redirect("/");
+      } else {
+        res.redirect("/");
+      }
+    });
   });
   return app;
 }

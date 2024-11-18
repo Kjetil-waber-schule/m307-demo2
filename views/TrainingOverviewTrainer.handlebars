@@ -1,0 +1,20 @@
+<h1>Training Übersicht</h1>
+
+<table>
+  <tr>
+    <th>Zeitpunkt</th>
+    <th>Erholungszustand</th>
+    <th>Stimmung</th>
+    <th>Intensität</th>
+  </tr>
+  {{#uebersicht}}
+    <tr>
+      <td><a href="/Trainingsdetails/{{id}}">{{zeitpunkt}}</a></td>
+      <td>{{erholungszustand}}</td>
+      <td>{{stimmung}}</td>
+      <td>{{intensitaet}}</td>
+    </tr>
+  {{/uebersicht}}
+</table>
+<a href="/AthletHome" class="button">Home</a>
+<a href="/logout" class="button">Logout</a>

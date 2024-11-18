@@ -54,6 +54,24 @@ app.get("/TrainingOverview", async function (req, res) {
   res.render("TrainingOverview", { uebersicht: uebersicht.rows });
 });
 
+app.get("/TrainingOverviewTrainer", async function (req, res) {
+  if (!req.session.trainerId) {
+    res.redirect("/");
+    return;
+  }
+
+  const uebersicht = await app.locals.pool.query(
+    "SELECT t.*, a.vorname AS Athlet_Vorname, a.nachname AS Athlet_Name FROM Training AS t JOIN zugehoerigkeit AS z ON t.Zugehoerigkeit_ID = z.ID JOIN athlets AS a ON z.Athlet_ID = a.ID WHERE z.Trainer_ID = $1;",
+    [req.session.trainerid]
+  );
+
+  for (const u of uebersicht.rows) {
+    u.zeitpunkt = u.zeitpunkt.toLocaleDateString("de-DE");
+  }
+
+  res.render("TrainingOverviewTrainer", { uebersicht: uebersicht.rows });
+});
+
 app.get("/Trainingsdetails/:id", async function (req, res) {
   if (!req.session.userid) {
     res.redirect("/");

@@ -102,7 +102,7 @@ export function createApp(dbconfig) {
           console.log(error);
         }
         if (bcrypt.compareSync(req.body.password, result.rows[0].password)) {
-          req.session.userid = result.rows[0].id;
+          req.session.trainerId = result.rows[0].id;
           res.redirect("/trainerHome");
         } else {
           res.redirect("/trainerLogin");

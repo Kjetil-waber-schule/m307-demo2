@@ -85,7 +85,7 @@ app.post("/create_training", upload.single("image"), async function (req, res) {
       req.body.RecoveryRange,
       req.body.MoodRange,
       req.body.IntensityRange,
-      req.body.filename,
+      req.file.filename,
       req.body.Comment,
     ]
   );

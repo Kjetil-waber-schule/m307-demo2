@@ -8,7 +8,14 @@
   <p>Text: {{text}}</p>
 
   {{#if foto}}
-    <img src="/uploads/{{foto}}" alt="Training Foto" />
+    <div style="max-width: 1000px;">
+      <img
+        src="/uploads/{{foto}}"
+        alt="Training Foto"
+        style="width:100%; height: auto;"
+      />
+    </div>
+
   {{/if}}
 {{/details}}
 

@@ -1,23 +1,25 @@
-<h1>Trainingsdetails</h1>
-{{#details}}
-  <p>Zeitpunkt: {{zeitpunkt}}</p>
-  <p>Erholungszustand: {{erholungszustand}}</p>
-  <p>Stimmung: {{stimmung}}</p>
-  <p>Intensität: {{intensitaet}}</p>
-  <p>Trainer: {{Trainer_Vorname}} {{Trainer_Name}}</p>
-  <p>Text: {{text}}</p>
+<div class="details-container">
+  <h1>Trainingsdetails</h1>
+  {{#details}}
+    <p>Zeitpunkt: {{zeitpunkt}}</p>
+    <p>Erholungszustand: {{erholungszustand}}</p>
+    <p>Stimmung: {{stimmung}}</p>
+    <p>Intensität: {{intensitaet}}</p>
+    <p>Trainer: {{Trainer_Vorname}} {{Trainer_Name}}</p>
+    <p>Text: {{text}}</p>
 
-  {{#if foto}}
-    <div style="max-width: 1000px;">
-      <img
-        src="/uploads/{{foto}}"
-        alt="Training Foto"
-        style="width:100%; height: auto;"
-      />
-    </div>
+    {{#if foto}}
+      <div style="max-width: 1000px;">
+        <img
+          src="/uploads/{{foto}}"
+          alt="Training Foto"
+          style="width:100%; height: auto;"
+        />
+      </div>
 
-  {{/if}}
-{{/details}}
+    {{/if}}
+  {{/details}}
 
-<a href="/AthletHome" class="button">Home</a>
-<a href="/logout" class="button">Logout</a>
+  <a href="/AthletHome" class="button">Home</a>
+  <a href="/logout" class="button">Logout</a>
+</div>

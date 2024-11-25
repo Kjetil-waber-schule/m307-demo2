@@ -62,7 +62,7 @@ app.get("/TrainingOverviewTrainer", async function (req, res) {
 
   const uebersicht = await app.locals.pool.query(
     "SELECT t.*, a.vorname AS Athlet_Vorname, a.nachname AS Athlet_Name FROM Training AS t JOIN zugehoerigkeit AS z ON t.Zugehoerigkeit_ID = z.ID JOIN athlets AS a ON z.Athlet_ID = a.ID WHERE z.Trainer_ID = $1;",
-    [req.session.trainerid]
+    [req.session.trainerId]
   );
 
   for (const u of uebersicht.rows) {
@@ -90,6 +90,24 @@ app.get("/Trainingsdetails/:id", async function (req, res) {
   });
 });
 
+app.get("/TrainingsdetailsTrainer/:id", async function (req, res) {
+  if (!req.session.trainerId) {
+    res.redirect("/");
+    return;
+  }
+  const details = await app.locals.pool.query(
+    "SELECT t.*, a.vorname AS Athlet_Vorname, a.nachname AS Athlet_Name FROM Training AS t JOIN zugehoerigkeit AS z ON t.Zugehoerigkeit_ID = z.ID JOIN athlets AS a ON z.Athlet_ID = a.ID WHERE z.Trainer_ID = $1;",
+    [req.session.trainerId]
+  );
+  for (const d of details.rows) {
+    d.zeitpunkt = d.zeitpunkt.toLocaleDateString("de-DE");
+  }
+  res.render("TrainingsdetailsTrainer", {
+    details: details.rows,
+    foto: details.rows[0].foto,
+  });
+});
+
 app.post("/create_training", upload.single("image"), async function (req, res) {
   if (!req.session.userid) {
     res.redirect("/");
@@ -108,6 +126,14 @@ app.post("/create_training", upload.single("image"), async function (req, res) {
     ]
   );
   res.redirect("/AthletHome");
+});
+
+app.get("/traininggroup", (req, res) => {
+  if (!req.session.trainerId) {
+    return res.redirect("/trainerLogin");
+  }
+
+  res.render("traininggroup");
 });
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */

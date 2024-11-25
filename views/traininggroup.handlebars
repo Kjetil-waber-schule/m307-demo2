@@ -1,0 +1,34 @@
+<div class="details-container">
+  <h1>Meine Athleten</h1>
+
+  <table>
+    <tr>
+      <th>Auswahl</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>E-Mail</th>
+    </tr>
+    {{#gruppe}}
+      <tr>
+        <td>{{zeitpunkt}}</td>
+        <td>{{Athlet_Vorname}}</td>
+        <td>{{Athlet_Name}}</td>
+        <td>{{Athlet_email}}</td>
+      </tr>
+    {{/gruppe}}
+  </table>
+
+  <form id="athlete-form">
+    <ul>
+      {{#each athletes}}
+        <li>
+
+          <label for="athlete-{{id}}">{{name}}</label>
+        </li>
+      {{/each}}
+    </ul>
+    <button type="submit">Auswahl speichern</button>
+  </form>
+  <a href="/TrainerHome" class="button">Home</a>
+  <a href="/logout" class="button">Logout</a>
+</div>

@@ -136,6 +136,10 @@ app.get("/traininggroup", (req, res) => {
   res.render("traininggroup");
 });
 
+app.get("/default", async function (req, res) {
+  res.render("default", {});
+});
+
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
 app.listen(3010, () => {
   console.log(`Example app listening at http://localhost:3010`);

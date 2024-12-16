@@ -1,0 +1,83 @@
+<h1>h1 Title</h1>
+<h2>h2 Title</h2>
+
+<p><b>Frage 1 (2 Punkte) – Wie unterscheiden sich Handlebars- von HTML-Dateien</b></p>
+<p>Antwort: 1 Handlebars-Dateien haben die Dateiendung
+  <code>.handlebars</code>, während HTML-Dateien die Endung
+  <code>.html</code>
+  oder
+  <code>.htm</code>
+  haben.</p>
+<p>Antwort: 2 Handlebars-Dateien können neben HTML-Code auch
+  Handlebars-Ausdrücke enthalten, die in doppelte geschweifte Klammern
+  <code></code>
+  eingeschlossen sind. Diese Ausdrücke ermöglichen es, dynamische Inhalte in die
+  HTML-Seite einzufügen, die serverseitig gerendert werden.</p>
+
+<p><b>Frage 2 (1 Punkt) – Welche Adresse muss im Browser eingegeben werden,
+    damit die home.handlebars-Datei angezeigt wird?</b></p>
+<p>Antwort: <code>/</code></p>
+<p>Antwort: <code>/start</code></p>
+
+<p><b>Frage 4 (1 Punkt) – Wie lautet die SQL-Abfrage, um alle Posts aus der
+    Datenbanktabelle «posts» zu löschen?</b></p>
+<p>Antwort: <code>DELETE FROM posts;</code></p>
+
+<p><b>Frage 5 (2 Punkte) – In welchem Bereich des folgenden Codes muss die
+    SQL-Abfrage platziert werden? Begründe weshalb es dort stehen muss.</b></p>
+<p>Antwort: (3) Begründung: Die SQL-Abfrage muss vor dem
+  <code>res.render</code>
+  ausgeführt werden, da die abgefragten Daten (in diesem Fall
+  <code>events</code>) der
+  <code>render</code>-Funktion übergeben werden müssen, damit diese im Template
+  verwendet werden können. An der Stelle (3) wird
+  <code>await pool.query(...)</code>
+  ausgeführt, das heißt, dass hier das Ergebnis der Datenbankabfrage vorliegt
+  und in der Variable
+  <code>events</code>
+  gespeichert wird.</p>
+
+<p><b>Frage 7 (4 Punkte) – In Bezug zum Code aus der Frage 5: Welche Code-Teile
+    fehlen in den jeweiligen Platzhaltern? Ergänze den Code, um auf der
+    aufgerufenen Route «overview» alle Inhalte aus der Datenbanktabelle events
+    anzuzeigen.</b></p>
+<p>Antwort: (1) <code>"/overview"</code></p>
+<p>Antwort: (2) <code>req, res</code></p>
+<p>Antwort: (3) <code>"SELECT * FROM events"</code></p>
+<p>Antwort: (4) <code>events: events</code></p>
+
+<p><b>Frage 8 (1 Punkt) – Wie wird die Variable namens «events» im HTML-Code in
+    einer Handlebars-Datei verwendet, um alle Resultate der Datenbank
+    aufzulisten?</b></p>
+<p>Antwort: Um die Resultate der Datenbank aufzulisten, wird in der
+  Handlebars-Datei eine
+  <code>each</code>-Schleife verwendet.</p>
+<pre><code>
+    {{#each events}}
+      <p>{{this.spalte1}}</p>
+      <p>{{this.spalte2}}</p>
+      ...
+    {{/each}}
+  </code></pre>
+
+<p><b>Frage 10 (2 Punkte) – Was ist der Unterschied von «res.redirect» und
+    «res.render» mit dem Beispiel vom folgenden Code?</b></p>
+<p>Antwort:</p>
+<ul>
+  <li><code>res.redirect(url)</code>: Leitet den Client (Browser) zu einer
+    anderen URL um. Der Server sendet einen HTTP-Statuscode (normalerweise 302
+    Found), der den Browser anweist, eine neue Anfrage an die angegebene URL zu
+    senden. Im Beispiel wird der Benutzer zu
+    <code>/login</code>
+    umgeleitet, wenn er nicht eingeloggt ist.</li>
+  <li><code>res.render(view, data)</code>: Rendert eine View-Vorlage (z.B. eine
+    Handlebars-Datei) und sendet das gerenderte HTML an den Client. Die
+    <code>data</code>
+    werden an die View übergeben und können dort verwendet werden. Im Beispiel
+    wird die
+    <code>intern</code>-Vorlage gerendert und das
+    <code>user</code>-Objekt an die Vorlage übergeben.</li>
+</ul>
+
+<p><b>Frage 12 (1 Punkt) – Welche Aussage ist wahr oder falsch?</b></p>
+<p>Antwort: <code>false</code></p>
